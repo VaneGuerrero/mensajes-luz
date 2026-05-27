@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1020" />
+    <title>Mensajes de Luz</title>
+    <style>
+      :root{--bg:#0b1020;--card:#141b33cc;--text:#eaf0ff;--muted:#b8c2e6}
+      *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(circle at 20% 0%,#283b7a55,transparent 40%),radial-gradient(circle at 80% 100%,#6d3ca255,transparent 45%),var(--bg);color:var(--text)}
+      .wrap{max-width:880px;margin:0 auto;padding:24px}
+      h1{font-size:clamp(2rem,5vw,3.4rem);text-align:center;margin:12px 0}
+      p{text-align:center;color:var(--muted)}
+      .card{background:var(--card);border:1px solid #ffffff2e;border-radius:20px;padding:18px;backdrop-filter: blur(8px)}
+      .wheel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:20px 0}
+      button{width:100%;padding:14px;border:0;border-radius:12px;color:white;font-weight:700;cursor:pointer;background:#243a7a}
+      .spin{background:linear-gradient(90deg,#4b6cff,#8758ff)}
+      #msg{line-height:1.6}
+      .meta{font-size:.9rem;color:var(--muted);margin-top:8px}
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Mensajes de Luz</h1>
+      <p>Gira y escucha tu corazón. Recibe un mensaje guía para hoy.</p>
+
+      <section class="card">
+        <button class="spin" id="spinBtn">Girar la rueda</button>
+        <div class="wheel" id="angelButtons"></div>
+      </section>
+
+      <section class="card" style="margin-top:16px">
+        <h2 id="title">✨ Esperando tu mensaje</h2>
+        <p id="msg">Pulsa “Girar la rueda” para recibir una guía espiritual.</p>
+        <div class="meta" id="energy"></div>
+      </section>
+    </main>
+
+    <script>
+      const angels = [
+        {name:'Arcángel Miguel',energy:'Protección y valentía',color:'#2D7CFF',parts:[['Hoy la luz azul te protege.','Avanza con coraje en eso que temías.','Estoy protegido y fuerte.']]},
+        {name:'Arcángel Gabriel',energy:'Claridad e inspiración',color:'#c3d0ff',parts:[['Un mensaje claro llega a tu interior.','Escucha el silencio antes de decidir.','Confío en la guía divina.']]},
+        {name:'Arcángel Rafael',energy:'Sanación y equilibrio',color:'#22C55E',parts:[['Tu energía pide calma amorosa.','Respira y suelta lo que te pesa.','Mi alma y mi cuerpo sanan.']]},
+        {name:'Arcángel Uriel',energy:'Abundancia y sabiduría',color:'#f59e0b',parts:[['Se enciende una claridad dorada.','Ordena una acción concreta hoy.','La prosperidad fluye con propósito.']]},
+        {name:'Arcángel Chamuel',energy:'Amor y compasión',color:'#f9a8d4',parts:[['El amor regresa a tu centro.','Háblate con ternura y verdad.','Merezco amor sereno.']]},
+        {name:'Arcángel Jofiel',energy:'Iluminación e inspiración',color:'#facc15',parts:[['Tu mente se ilumina con belleza.','Aprende algo nuevo hoy.','Creo desde la sabiduría.']]},
+        {name:'Arcángel Zadquiel',energy:'Transformación y perdón',color:'#7c3aed',parts:[['El fuego violeta te transforma.','Perdona y libera el pasado.','Renazco en luz.']]}
+      ];
+
+      const title = document.getElementById('title');
+      const msg = document.getElementById('msg');
+      const energy = document.getElementById('energy');
+      const angelButtons = document.getElementById('angelButtons');
+
+      function buildMessage(a){
+        const [i,g,a1]=a.parts[Math.floor(Math.random()*a.parts.length)];
+        return `${i} ${g} ${a1}`;
+      }
+      function showAngel(a){
+        title.textContent = `✦ ${a.name}`;
+        title.style.color = a.color;
+        msg.textContent = buildMessage(a);
+        energy.textContent = `Energía: ${a.energy}`;
+      }
+      document.getElementById('spinBtn').onclick=()=>showAngel(angels[Math.floor(Math.random()*angels.length)]);
+      angels.forEach(a=>{
+        const b=document.createElement('button');
+        b.textContent=a.name.replace('Arcángel ','');
+        b.style.background=a.color;
+        b.onclick=()=>showAngel(a);
+        angelButtons.appendChild(b);
+      });
+    </script>
+  </body>
+</html>
