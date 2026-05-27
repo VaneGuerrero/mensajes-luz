@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.5), transparent), radial-gradient(1.5px 1.5px at 75% 60%, rgba(255,255,255,.38), transparent), radial-gradient(1px 1px at 60% 15%, rgba(171,197,255,.5), transparent);
+  animation: drift 20s linear infinite;
+  opacity: .6;
+}
+
+.wheel {
+  background: conic-gradient(from 0deg, #2d7cff, #eff4ff, #22c55e, #f59e0b, #f9a8d4, #facc15, #7c3aed, #2d7cff);
+  filter: saturate(1.1) brightness(.9);
+}
+
+.glass { backdrop-filter: blur(16px); background: rgba(14, 19, 44, .45); border: 1px solid rgba(255,255,255,.18); }
+.btn { @apply px-4 py-2 rounded-full text-sm bg-white/10 hover:bg-white/20 transition border border-white/20; }
+
+@keyframes drift { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
