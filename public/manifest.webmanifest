@@ -6,4 +6,9 @@
   "display": "standalone",
   "background_color": "#0b1020",
   "theme_color": "#0b1020"
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1028",
+  "theme_color": "#0d1028",
+  "icons": []
 }
