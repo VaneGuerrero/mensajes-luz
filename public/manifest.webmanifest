@@ -1,6 +1,8 @@
 {
   "name": "Mensajes de Luz",
   "short_name": "Luz",
+  "start_url": "/mensajes-luz/",
+  "scope": "/mensajes-luz/",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0d1028",
