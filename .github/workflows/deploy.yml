@@ -16,6 +16,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  validate-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: rhysd/actionlint@v1
+
+  build:
+    runs-on: ubuntu-latest
+    needs: validate-workflow
   build:
     runs-on: ubuntu-latest
     steps:
